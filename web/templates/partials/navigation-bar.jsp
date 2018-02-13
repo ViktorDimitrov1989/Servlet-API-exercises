@@ -21,6 +21,4 @@
             <li><a href="${pageContext.request.contextPath}/signin" role="button">Sign In</a></li>
         </c:if>
     </ul>
-
-
 </html>

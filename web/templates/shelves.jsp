@@ -17,10 +17,23 @@
     <%@ include file="/templates/partials/navigation-bar.jsp" %>
 </div>
 
-<article>
+<div>
     <h1>Shelves page</h1>
-
-</article>
+    <table style="width:100%">
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Pages</th>
+        </tr>
+        <c:forEach items="${books}" var="book">
+            <tr>
+                <td>${book.title}</td>
+                <td>${book.author}</td>
+                <td>${book.pages}</td>
+            </tr>
+        </c:forEach>
+    </table>
+</div>
 
 <div>
     <%@ include file="/templates/partials/footer.jsp" %>

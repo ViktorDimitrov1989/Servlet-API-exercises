@@ -17,10 +17,21 @@
     <%@ include file="/templates/partials/navigation-bar.jsp" %>
 </div>
 
-<article>
-    <h1>Add Book</h1>
-
-</article>
+<div>
+    <h1>Create book</h1>
+    <form method="post">
+        Title:<br>
+        <input type="text" name="title">
+        <br>
+        Author:<br>
+        <input type="text" name="author">
+        <br>
+        Pages:<br>
+        <input type="number" name="pagescnt">
+        <br><br>
+        <input type="submit" value="Create">
+    </form>
+</div>
 
 <div>
     <%@ include file="/templates/partials/footer.jsp" %>

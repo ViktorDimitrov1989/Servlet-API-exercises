@@ -4,9 +4,15 @@ public class AddBookModel {
 
     private String title;
     private String author;
-    private String pages;
+    private int pages;
 
     public AddBookModel(){}
+
+    public AddBookModel(String title, String author, int pages){
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+    }
 
     public String getTitle() {
         return title;
@@ -24,11 +30,11 @@ public class AddBookModel {
         this.author = author;
     }
 
-    public String getPages() {
+    public int getPages() {
         return pages;
     }
 
-    public void setPages(String pages) {
+    public void setPages(int pages) {
         this.pages = pages;
     }
 }

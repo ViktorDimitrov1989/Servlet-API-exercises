@@ -7,7 +7,7 @@ public class Book {
     private Long id;
     private String title;
     private Long pages;
-    private Date creationDate;
+    private String author;
 
     public Book(){}
 
@@ -35,11 +35,11 @@ public class Book {
         this.pages = pages;
     }
 
-    public Date getCreationDate() {
-        return creationDate;
+    public String getAuthor() {
+        return author;
     }
 
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
+    public void setAuthor(String author) {
+        this.author = author;
     }
 }

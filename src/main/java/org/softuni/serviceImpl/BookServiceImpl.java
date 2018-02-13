@@ -3,6 +3,7 @@ package org.softuni.serviceImpl;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.softuni.entity.Book;
+import org.softuni.exception.RequestException;
 import org.softuni.model.bindingModel.AddBookModel;
 import org.softuni.model.viewModel.ViewBookModel;
 import org.softuni.repositories.BookRepository;
@@ -16,30 +17,32 @@ import java.util.Set;
 
 public class BookServiceImpl implements BookService{
 
-    private BookRepository bookRepository;
     private ModelMapper mapper;
 
     public BookServiceImpl(){
-        this.bookRepository = BookRepositoryImpl.getInstance();
         this.mapper = new ModelMapper();
     }
 
     @Override
     public AddBookModel saveBook(AddBookModel addBookModel) {
-        Book savedBook = this.bookRepository.saveBook(this.mapper.map(addBookModel, Book.class));
+        BookRepository bookRepository = BookRepositoryImpl.getInstance();
 
-        if(this.bookRepository.findBookByTitle(addBookModel.getTitle()) != null){
-            //handle error - book already exists
+
+        if(bookRepository.findBookByTitle(addBookModel.getTitle()) != null){
+            throw new RequestException("This book already exists");
         }
+
+        Book savedBook = bookRepository.saveBook(this.mapper.map(addBookModel, Book.class));
 
         return this.mapper.map(savedBook, AddBookModel.class);
     }
 
     @Override
     public Set<ViewBookModel> getAllBooks() {
+        BookRepository bookRepository = BookRepositoryImpl.getInstance();
         Set<Book> resBooks = new HashSet<>();
 
-        resBooks.addAll(this.bookRepository.getAllBooks().values());
+        resBooks.addAll(bookRepository.getAllBooks().values());
 
         Type listType = new TypeToken<Set<ViewBookModel>>() {}.getType();
 
@@ -48,21 +51,23 @@ public class BookServiceImpl implements BookService{
 
     @Override
     public ViewBookModel findBookByTitle(String title) {
+        BookRepository bookRepository = BookRepositoryImpl.getInstance();
 
-        if(this.bookRepository.findBookByTitle(title) == null){
+        if(bookRepository.findBookByTitle(title) == null){
             //handle error
         }
 
-        return this.mapper.map(this.bookRepository.findBookByTitle(title), ViewBookModel.class);
+        return this.mapper.map(bookRepository.findBookByTitle(title), ViewBookModel.class);
     }
 
     @Override
     public ViewBookModel deleteBookByTitle(String title) {
+        BookRepository bookRepository = BookRepositoryImpl.getInstance();
 
-        if(this.bookRepository.findBookByTitle(title) == null){
+        if(bookRepository.findBookByTitle(title) == null){
             //handle error
         }
 
-        return this.mapper.map(this.bookRepository.deleteBookByTitle(title), ViewBookModel.class);
+        return this.mapper.map(bookRepository.deleteBookByTitle(title), ViewBookModel.class);
     }
 }

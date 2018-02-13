@@ -8,10 +8,9 @@ public class BookRepositoryImpl implements BookRepository {
 
     private static BookRepository bookRepository;
 
-    private Map<String, Book> books;
+    private Map<String, Book> books = new TreeMap<>();
 
     private BookRepositoryImpl(){
-        this.books = new TreeMap<String, Book>();
     }
 
     public static BookRepository getInstance(){
@@ -24,7 +23,9 @@ public class BookRepositoryImpl implements BookRepository {
 
     @Override
     public Book saveBook(Book book) {
-        return this.books.put(book.getTitle(), book);
+        this.books.put(book.getTitle(), book);
+
+        return book;
     }
 
     @Override
