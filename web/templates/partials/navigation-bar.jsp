@@ -9,10 +9,18 @@
 <html>
     <ul class="nav">
         <li><a href="${pageContext.request.contextPath}/">Home</a></li>
-        <li><a href="${pageContext.request.contextPath}/signup" role="button">Sign Up</a></li>
-        <li><a href="${pageContext.request.contextPath}/signin" role="button">Sign In</a></li>
-        <li><a href="${pageContext.request.contextPath}/add" role="button">Add Book</a></li>
-        <li><a href="${pageContext.request.contextPath}/shelves" role="button">Shelves</a></li>
-        <li><a href="${pageContext.request.contextPath}/signout" role="button">Logout</a></li>
+        <c:if test="${username != null}">
+            <li><a href="${pageContext.request.contextPath}/add" role="button">Add Book</a></li>
+            <li><a href="${pageContext.request.contextPath}/shelves" role="button">Shelves</a></li>
+            <li><a href="${pageContext.request.contextPath}/signout" role="button">Logout</a></li>
+
+            <li style="float:right" style="color: white;"><p>Hello ${username}</p></li>
+        </c:if>
+        <c:if test="${username == null}">
+            <li><a href="${pageContext.request.contextPath}/signup" role="button">Sign Up</a></li>
+            <li><a href="${pageContext.request.contextPath}/signin" role="button">Sign In</a></li>
+        </c:if>
     </ul>
+
+
 </html>

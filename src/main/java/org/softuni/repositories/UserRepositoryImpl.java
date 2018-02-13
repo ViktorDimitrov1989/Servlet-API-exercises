@@ -8,11 +8,9 @@ public class UserRepositoryImpl implements UserRepository{
 
     private static UserRepositoryImpl userRepository;
 
-    private Map<String, User> users;
+    private Map<String, User> users = new TreeMap<>();
 
     private UserRepositoryImpl(){
-        userRepository = new UserRepositoryImpl();
-        this.users = new TreeMap<>();
     }
 
     public static UserRepositoryImpl getInstance(){
@@ -24,10 +22,13 @@ public class UserRepositoryImpl implements UserRepository{
         return userRepository;
     }
 
-
     @Override
     public User createUser(User user) {
-        return this.users.put(user.getUsername(), user);
+        this.users.put(user.getUsername(), user);
+
+        this.users.get(user.getUsername());
+
+        return user;
     }
 
     @Override

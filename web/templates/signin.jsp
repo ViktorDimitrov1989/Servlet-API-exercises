@@ -16,11 +16,21 @@
 <div>
     <%@ include file="/templates/partials/navigation-bar.jsp" %>
 </div>
-
-<article>
-    <h1>Sogn IN</h1>
-
-</article>
+<div>
+    <%@ include file="/templates/partials/notifications.jsp" %>
+</div>
+<div>
+<h1>Sign in</h1>
+    <form method="post">
+        Username:<br>
+        <input type="text" name="username">
+        <br>
+        Password:<br>
+        <input type="password" name="password">
+        <br><br>
+        <input type="submit" value="Sign up">
+    </form>
+</div>
 
 <div>
     <%@ include file="/templates/partials/footer.jsp" %>
