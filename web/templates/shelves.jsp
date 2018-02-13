@@ -24,12 +24,16 @@
             <th>Title</th>
             <th>Author</th>
             <th>Pages</th>
+            <th>Edit</th>
+            <th>Delete</th>
         </tr>
         <c:forEach items="${books}" var="book">
             <tr>
                 <td>${book.title}</td>
                 <td>${book.author}</td>
                 <td>${book.pages}</td>
+                <td><a href="${pageContext.request.contextPath}/shelves/edit/${book.title}" role="button">Edit</a></td>
+                <td><a href="${pageContext.request.contextPath}/shelves/delete/${book.title}" role="button">Delete</a></td>
             </tr>
         </c:forEach>
     </table>

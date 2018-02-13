@@ -27,7 +27,6 @@ public class BookServiceImpl implements BookService{
     public AddBookModel saveBook(AddBookModel addBookModel) {
         BookRepository bookRepository = BookRepositoryImpl.getInstance();
 
-
         if(bookRepository.findBookByTitle(addBookModel.getTitle()) != null){
             throw new RequestException("This book already exists");
         }
@@ -54,7 +53,7 @@ public class BookServiceImpl implements BookService{
         BookRepository bookRepository = BookRepositoryImpl.getInstance();
 
         if(bookRepository.findBookByTitle(title) == null){
-            //handle error
+            throw new RequestException("There is no such book!");
         }
 
         return this.mapper.map(bookRepository.findBookByTitle(title), ViewBookModel.class);
@@ -65,7 +64,7 @@ public class BookServiceImpl implements BookService{
         BookRepository bookRepository = BookRepositoryImpl.getInstance();
 
         if(bookRepository.findBookByTitle(title) == null){
-            //handle error
+            throw new RequestException("There is no such book!");
         }
 
         return this.mapper.map(bookRepository.deleteBookByTitle(title), ViewBookModel.class);
